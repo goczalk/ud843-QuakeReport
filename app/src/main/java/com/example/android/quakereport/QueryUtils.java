@@ -67,8 +67,9 @@ public final class QueryUtils {
                 double magnitude = jsonProperties.optDouble("mag");
                 String location = jsonProperties.optString("place");
                 long time = jsonProperties.optLong("time");
+                String url = jsonProperties.optString("url");
 
-                earthquakes.add(new Earthquake(magnitude, location, time));
+                earthquakes.add(new Earthquake(magnitude, location, time, url));
             }
 
         } catch (JSONException e) {
