@@ -7,12 +7,15 @@
 
     <TextView
         android:id="@+id/magnitude_text_view"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/magnitude_circle_diameter"
+        android:layout_height="@dimen/magnitude_circle_diameter"
         tools:text="7.2"
-        android:padding="@dimen/default_padding"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:background="@drawable/magnitude_circle"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/offset_text_view"
@@ -20,7 +23,7 @@
         android:layout_weight="2"
         android:layout_height="match_parent"
         tools:text="95km NW of"
-        android:padding="@dimen/default_padding"
+        android:layout_marginLeft="16dp"
         android:textAlignment="center"/>
 
     <TextView

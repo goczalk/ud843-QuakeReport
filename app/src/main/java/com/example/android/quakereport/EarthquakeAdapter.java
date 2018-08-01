@@ -1,8 +1,11 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +41,24 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         }
 
         // Get the {@link AndroidFlavor} object located at this position in the list
-        final Earthquake currentEqarthquake = getItem(position);
+        final Earthquake currentEarthquake = getItem(position);
 
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.magnitude_text_view);
-        nameTextView.setText(formatMagnitude(currentEqarthquake.getmMagnitude()));
+        TextView magnitudeTextView = (TextView) convertView.findViewById(R.id.magnitude_text_view);
+        magnitudeTextView.setText(formatMagnitude(currentEarthquake.getmMagnitude()));
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
+
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(currentEarthquake.getmMagnitude());
+
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(magnitudeColor);
 
 
         TextView offsetTextView = (TextView) convertView.findViewById(R.id.offset_text_view);
         TextView locationTextView = (TextView) convertView.findViewById(R.id.location_text_view);
-        String[] splits = currentEqarthquake.getmLocation().split(LOCATION_SEPARATOR);
+        String[] splits = currentEarthquake.getmLocation().split(LOCATION_SEPARATOR);
         if(splits.length == 1){
             offsetTextView.setText(R.string.near_the);
         }
@@ -67,13 +79,53 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         * */
 
         TextView dateTextView = (TextView) convertView.findViewById(R.id.date_text_view);
-        dateTextView.setText(currentEqarthquake.getDateString());
+        dateTextView.setText(currentEarthquake.getDateString());
 
         TextView timeTextView = (TextView) convertView.findViewById(R.id.time_text_view);
-        timeTextView.setText(currentEqarthquake.getTimeString());
+        timeTextView.setText(currentEarthquake.getTimeString());
 
 
         return convertView;
+    }
+
+    private int getMagnitudeColor(double magnitude) {
+        int magnitudeColorResourceId;
+        int magnitudeFloor = (int) Math.floor(magnitude);
+
+        switch (magnitudeFloor) {
+            case 0:
+            case 1:
+                magnitudeColorResourceId = R.color.magnitude1;
+                break;
+            case 2:
+                magnitudeColorResourceId = R.color.magnitude2;
+                break;
+            case 3:
+                magnitudeColorResourceId = R.color.magnitude3;
+                break;
+            case 4:
+                magnitudeColorResourceId = R.color.magnitude4;
+                break;
+            case 5:
+                magnitudeColorResourceId = R.color.magnitude5;
+                break;
+            case 6:
+                magnitudeColorResourceId = R.color.magnitude6;
+                break;
+            case 7:
+                magnitudeColorResourceId = R.color.magnitude7;
+                break;
+            case 8:
+                magnitudeColorResourceId = R.color.magnitude8;
+                break;
+            case 9:
+                magnitudeColorResourceId = R.color.magnitude9;
+                break;
+            default:
+                magnitudeColorResourceId = R.color.magnitude10plus;
+                break;
+        }
+        return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
     }
 
     private String formatMagnitude(double magnitude) {
