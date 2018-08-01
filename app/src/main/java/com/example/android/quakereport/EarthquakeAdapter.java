@@ -16,6 +16,9 @@ import java.util.ArrayList;
  */
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
+
+    public static final String LOCATION_SEPARATOR = "of";
+
     public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquakes) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
@@ -39,8 +42,27 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView nameTextView = (TextView) convertView.findViewById(R.id.magnitude_text_view);
         nameTextView.setText(String.valueOf(currentEqarthquake.getmMagnitude()));
 
+        TextView offsetTextView = (TextView) convertView.findViewById(R.id.offset_text_view);
         TextView locationTextView = (TextView) convertView.findViewById(R.id.location_text_view);
-        locationTextView.setText(currentEqarthquake.getmLocation());
+        String[] splits = currentEqarthquake.getmLocation().split(LOCATION_SEPARATOR);
+        if(splits.length == 1){
+            offsetTextView.setText(R.string.near_the);
+        }
+        else{
+            offsetTextView.setText(splits[0] + "of");
+        }
+        locationTextView.setText(splits[splits.length-1]);
+
+        /*
+        *  if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
+            locationOffset = parts[0] + LOCATION_SEPARATOR;
+            primaryLocation = parts[1];
+         } else {
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = originalLocation;
+         }
+        * */
 
         TextView dateTextView = (TextView) convertView.findViewById(R.id.date_text_view);
         dateTextView.setText(currentEqarthquake.getDateString());

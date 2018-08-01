@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="88dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/magnitude_text_view"
@@ -15,9 +15,18 @@
         android:textAlignment="center"/>
 
     <TextView
+        android:id="@+id/offset_text_view"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        tools:text="95km NW of"
+        android:padding="@dimen/default_padding"
+        android:textAlignment="center"/>
+
+    <TextView
         android:id="@+id/location_text_view"
         android:layout_width="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:layout_height="match_parent"
         tools:text="San Francisco"
         android:padding="@dimen/default_padding"
