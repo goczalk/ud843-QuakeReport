@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/magnitude_text_view"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        tools:text="7.2"
+        android:padding="@dimen/default_padding"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/location_text_view"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        tools:text="San Francisco"
+        android:padding="@dimen/default_padding"
+        android:textAlignment="center"/>
+
+
+    <TextView
+        android:id="@+id/time_text_view"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        tools:text="Aug 22, 2018"
+        android:padding="@dimen/default_padding"
+        android:textAlignment="center"/>
+
+</LinearLayout>
