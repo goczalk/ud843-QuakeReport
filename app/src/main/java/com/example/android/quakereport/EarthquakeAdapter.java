@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,14 +37,14 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         final Earthquake currentEqarthquake = getItem(position);
 
         TextView nameTextView = (TextView) convertView.findViewById(R.id.magnitude_text_view);
-        nameTextView.setText(String.valueOf(currentEqarthquake.getMagnitude()));
+        nameTextView.setText(String.valueOf(currentEqarthquake.getmMagnitude()));
 
         TextView hoursDateTextView = (TextView) convertView.findViewById(R.id.location_text_view);
-        hoursDateTextView.setText(currentEqarthquake.getLocation());
+        hoursDateTextView.setText(currentEqarthquake.getmLocation());
 
 
         TextView locationTextView = (TextView) convertView.findViewById(R.id.time_text_view);
-        locationTextView.setText(currentEqarthquake.getDate());
+        locationTextView.setText(currentEqarthquake.getmDate());
 
         return convertView;
     }
