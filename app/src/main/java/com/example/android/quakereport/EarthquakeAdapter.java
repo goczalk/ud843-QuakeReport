@@ -39,12 +39,15 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView nameTextView = (TextView) convertView.findViewById(R.id.magnitude_text_view);
         nameTextView.setText(String.valueOf(currentEqarthquake.getmMagnitude()));
 
-        TextView hoursDateTextView = (TextView) convertView.findViewById(R.id.location_text_view);
-        hoursDateTextView.setText(currentEqarthquake.getmLocation());
+        TextView locationTextView = (TextView) convertView.findViewById(R.id.location_text_view);
+        locationTextView.setText(currentEqarthquake.getmLocation());
 
+        TextView dateTextView = (TextView) convertView.findViewById(R.id.date_text_view);
+        dateTextView.setText(currentEqarthquake.getDateString());
 
-        TextView locationTextView = (TextView) convertView.findViewById(R.id.time_text_view);
-        locationTextView.setText(currentEqarthquake.getmDate());
+        TextView timeTextView = (TextView) convertView.findViewById(R.id.time_text_view);
+        timeTextView.setText(currentEqarthquake.getTimeString());
+
 
         return convertView;
     }
