@@ -31,7 +31,7 @@ public class Earthquake {
 
     public String getDateString(){
         Date dateObject = new Date(mTimeInMilliseconds);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM DD, yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
         String date = simpleDateFormat.format(dateObject);
         return date;
     }
