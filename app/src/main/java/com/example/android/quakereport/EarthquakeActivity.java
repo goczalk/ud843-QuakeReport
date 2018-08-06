@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int EARTHQUAKE_LOADER_ID = 1;
+    private TextView emptyTextView;
 
 
     @Override
@@ -51,6 +53,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
+
+        emptyTextView = (TextView) findViewById(R.id.empty_text_view);
+        earthquakeListView.setEmptyView(emptyTextView);
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(mAdapter);
@@ -96,6 +101,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
         }
+        emptyTextView.setText(R.string.no_eartquakes_found);
     }
 
     @Override
