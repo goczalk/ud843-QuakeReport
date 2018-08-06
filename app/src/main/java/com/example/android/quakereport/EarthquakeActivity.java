@@ -41,7 +41,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int EARTHQUAKE_LOADER_ID = 1;
-    private TextView emptyTextView;
+    private TextView mEmptyTextView;
 
 
     @Override
@@ -54,8 +54,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
-        emptyTextView = (TextView) findViewById(R.id.empty_text_view);
-        earthquakeListView.setEmptyView(emptyTextView);
+        mEmptyTextView = (TextView) findViewById(R.id.empty_text_view);
+        earthquakeListView.setEmptyView(mEmptyTextView);
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(mAdapter);
@@ -101,7 +101,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
         }
-        emptyTextView.setText(R.string.no_eartquakes_found);
+
+//        To avoid the “No earthquakes found.” message blinking on the screen when the app first launches,
+//        we can leave the empty state TextView blank
+        mEmptyTextView.setText(R.string.no_eartquakes_found);
     }
 
     @Override
