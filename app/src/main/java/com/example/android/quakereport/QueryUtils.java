@@ -75,7 +75,7 @@ public final class QueryUtils {
         return earthquakes;
     }
 
-    public static String fetchEarthquakeData(String requestUrl){
+    public static List<Earthquake> fetchEarthquakeData(String requestUrl){
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -87,7 +87,9 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
-        return jsonResponse;
+        List<Earthquake> earthquakes = QueryUtils.extractEarthquakes(jsonResponse);
+
+        return earthquakes;
     }
 
     /**
